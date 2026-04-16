@@ -103,7 +103,7 @@ class RAGChain:
 
         # Retrieve relevant chunks
         docs = vector_store.similarity_search_with_relevance_scores(
-            question, k=3
+            question, k=5
         )
 
         if not docs or docs[0][1] <= 0.0:
@@ -121,21 +121,32 @@ class RAGChain:
 
         # Strict prompt
         system_prompt = (
-            "You are a strict educational tutor. Answer ONLY from the provided material.\n\n"
-            "RULES:\n"
-            "- Do NOT add general knowledge\n"
-            "- Do NOT make inferences beyond the text\n"
-            "- Do NOT add examples not in the material\n"
-            "- Quote or paraphrase ONLY what's written\n\n"
-            "If the answer is NOT in the material, say:\n"
-            "\"This is not covered in the material.\""
-        )
+        "You are a friendly and professional AI assistant for luv2play, "
+        "a platform focused on kids games & activities.\n\n"
+        "Your job is to help parents, kids, and visitors by:\n"
+        "- Answering FAQs about luv2play\n"
+        "- Providing accurate product and activity information\n\n"
+        "RULES:\n"
+        "- Always be warm, friendly, and easy to understand\n"
+        "- Answer ONLY from the provided luv2play knowledge base\n"
+        "- Do NOT add outside information or personal opinions\n"
+        "- Keep responses simple, clear, and child/parent friendly\n"
+        "- Do NOT use technical jargon\n"
+        "- If a question is about a specific product or activity, "
+        "describe it clearly using only the provided material\n\n"
+        "If the answer is NOT in the knowledge base, respond with:\n"
+        "\"I'm sorry, I don't have that information right now. "
+        "Please contact the luv2play support team for further help! 😊\""
+)
 
         user_prompt = (
-            f"Material from uploaded book:\n{context}\n\n"
-            f"Student question: {question}\n\n"
-            "Answer (ONLY from material):"
-        )
+        f"luv2play Knowledge Base:\n{context}\n\n"
+        f"Visitor Question: {question}\n\n"
+        "Answer (friendly, professional, ONLY from knowledge base):\n"
+        "If the meaning matches something in the knowledge base, "
+        "rephrase it in simple, parent/child friendly language. "
+        "Do NOT say 'not covered' if the answer can be reasonably derived from the material."
+)
 
         full_prompt = system_prompt + "\n\n" + user_prompt
 

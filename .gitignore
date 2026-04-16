@@ -1,14 +1,7 @@
 .env
-
-# Virtual environments
-.venv/
 venv/
-.env/
-pipenv/
-
-# OS
+__pycache__/
+*.pyc
 .DS_Store
-
-# Vector stores / generated data
-vectorstore/
-data/
+indexes/
+vision_cache/

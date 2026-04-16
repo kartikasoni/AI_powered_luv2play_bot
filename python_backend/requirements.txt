@@ -27,6 +27,7 @@ google-auth==2.44.0
 googleapis-common-protos==1.72.0
 grpcio==1.76.0
 h11==0.16.0
+
 hf-xet==1.2.0
 httpcore==1.0.9
 httptools==0.7.1
@@ -62,7 +63,7 @@ mypy_extensions==1.1.0
 networkx==3.6.1
 numpy==2.3.5
 oauthlib==3.3.1
-onnxruntime==1.23.2
+onnxruntime==1.24.4
 opentelemetry-api==1.39.1
 opentelemetry-exporter-otlp-proto-common==1.39.1
 opentelemetry-exporter-otlp-proto-grpc==1.39.1
@@ -86,7 +87,7 @@ pypdf==6.4.2
 PyPika==0.48.9
 pyproject_hooks==1.2.0
 python-dateutil==2.9.0.post0
-python-dotenv==1.2.1
+
 PyYAML==6.0.3
 referencing==0.37.0
 regex==2025.11.3
@@ -126,3 +127,20 @@ Werkzeug==3.1.4
 yarl==1.22.0
 zipp==3.23.0
 zstandard==0.25.0
+flask==3.1.2
+flask-cors==6.0.2
+python-dotenv==1.0.0
+PyMuPDF
+groq
+langchain-community
+langchain-core
+langchain-huggingface
+langchain-text-splitters
+sentence-transformers
+faiss-cpu
+flask
+flask-cors
+gunicorn
+python-dotenvpdfminer.six
+pdfminer.six
+pdfminer.six

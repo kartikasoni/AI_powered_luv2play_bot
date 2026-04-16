@@ -14,26 +14,36 @@ app = Flask(__name__)
 CORS(app)
 
 # Initialize indexes on startup
-print("\n Starting AI Teacher Backend...")
+print("\n Starting AI bot Backend...")
 index_manager = IndexManager()
-pdf_info, rag_chain = index_manager.initialize_all_indexes()
+
+#pdf_info, rag_chain = index_manager.initialize_all_indexes()
+pdf_info = {}
+rag_chain = None
+
+def initialize_if_needed():
+    global pdf_info, rag_chain
+    if not pdf_info:
+        print("Initializing indexes...")
+        pdf_info, rag_chain = index_manager.initialize_all_indexes()
 
 # ===================== API ROUTES =====================
 BASE_DIR = Path(__file__).resolve().parent
-DATA_DIR = BASE_DIR / "data"
+
+#DATA_DIR = BASE_DIR / "data"
 
 
 
 
-@app.route("/api/pdfs", methods=["GET"])
-def list_pdfs():
-    pdfs = []
-    for pdf in DATA_DIR.glob("*.pdf"):
-        pdfs.append({
-            "index_name": normalize_index_name(pdf.name),
-            "display_name": pdf.name
-        })
-    return jsonify({"pdfs": pdfs})
+# @app.route("/api/pdfs", methods=["GET"])
+# def list_pdfs():
+#     pdfs = []
+#     for pdf in DATA_DIR.glob("*.pdf"):
+#         pdfs.append({
+#             "index_name": normalize_index_name(pdf.name),
+#             "display_name": pdf.name
+#         })
+#     return jsonify({"pdfs": pdfs})
 
 from index_manager import normalize_index_name
 
@@ -50,6 +60,7 @@ def ask_question():
         - answer: string
     """
     try:
+        initialize_if_needed()
         data = request.json or {}
 
         question = data.get('question', '').strip()
@@ -83,6 +94,7 @@ def get_available_pdfs():
         - pdfs: List of PDF info objects with filename and index_name
     """
     try:
+        initialize_if_needed()
         pdfs_list = []
         for index_name, info in pdf_info.items():
             pdfs_list.append({
@@ -110,7 +122,7 @@ def health_check():
 @app.route('/', methods=['GET'])
 def root():
     return jsonify({
-        'message': 'AI Teacher Backend Running',
+        'message': 'AI bot Backend Running',
         'pdfs_loaded': len(pdf_info),
         'available_pdfs': list(pdf_info.keys())
     }), 200
@@ -126,4 +138,5 @@ def server_error(e):
     return jsonify({'error': 'Internal server error'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001, host='0.0.0.0')
+    #app.run(debug=True, port=5001, host='0.0.0.0')
+    app.run(debug=False, port=8080, host='0.0.0.0')
