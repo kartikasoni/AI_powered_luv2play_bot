@@ -1,10 +1,11 @@
+
 How to Run the AI Teacher Project
 
 
 	•	Clone the repository
 
     •	Navigate to backend folder
-        cd AI_teacher/python_backend
+        cd AI_powered_luv2play_bot/python_backend
 
     •	Create and activate virtual environment (Python 3.10 / 3.11 recommended) 
         python3.11 -m venv venv 
@@ -21,4 +22,4 @@ How to Run the AI Teacher Project
         Open frontend/index.html in a web browser. 
 
 
-# AI_powered_luv2play_bot
+

@@ -141,8 +141,6 @@ faiss-cpu
 flask
 flask-cors
 gunicorn
-python-dotenv
+python-dotenvpdfminer.six
 pdfminer.six
 pdfminer.six
-pdfminer.six
-langchain-groq

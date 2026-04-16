@@ -139,5 +139,4 @@ def server_error(e):
 
 if __name__ == '__main__':
     #app.run(debug=True, port=5001, host='0.0.0.0')
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(debug=False, port=8080, host='0.0.0.0')

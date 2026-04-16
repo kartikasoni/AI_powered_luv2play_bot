@@ -472,7 +472,6 @@ class VoiceConversation {
             setTimeout(() => {
                 statusEl.style.animation = '';
             }, 300);
-            
         }
     }
     
