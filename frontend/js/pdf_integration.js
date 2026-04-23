@@ -9,7 +9,7 @@
 class AIbot {
     constructor() {
         /*this.backendURL = 'http://localhost:5001/api';*/
-        this.backendURL = 'https://luv2play-backend.onrender.com/api';
+        this.backendURL = 'https://kartika19-ai-powered-luv2play-bot.hf.space/api';
         this.currentIndexName = null;
         this.voiceConversation = null;
         
@@ -91,7 +91,7 @@ class AIbot {
 
             this.displayTextAnswer(data.answer);
 
-            questionInput.value = '';
+            // questionInput.value = '';
 
         } catch (error) {
             whiteboard.innerHTML = `<p style="color:red;">❌ ${error.message}</p>`;

@@ -5,13 +5,16 @@ from dotenv import load_dotenv
 from pathlib import Path
 from index_manager import IndexManager, normalize_index_name
 
-
+load_dotenv()
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 # Load environment variables
-load_dotenv()
+
+# Explicitly set GROQ API KEY
+groq_api_key = os.environ.get("GROQ_API_KEY")
+print(f"GROQ KEY FOUND: {bool(groq_api_key)}") 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 # Initialize indexes on startup
 print("\n Starting AI bot Backend...")
@@ -138,6 +141,5 @@ def server_error(e):
     return jsonify({'error': 'Internal server error'}), 500
 
 if __name__ == '__main__':
-    #app.run(debug=True, port=5001, host='0.0.0.0')
-    port = int(os.environ.get("PORT", 10000))
+    port = int(os.environ.get("PORT", 7860))
     app.run(host="0.0.0.0", port=port)
